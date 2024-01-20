@@ -17,7 +17,7 @@
             }
         }
 
-        echo $i . ($output ? " " . $output : "") . "<br>";
+        echo "<p>" . $i . ($output ? " " . $output : "") . "</p>";
     }
     ?>
 </body>
