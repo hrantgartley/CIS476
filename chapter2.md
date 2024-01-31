@@ -3,7 +3,8 @@
 <!--toc:start-->
 
 - [Checklist for Evaluating an Architecture](#checklist-for-evaluating-an-architecture)
-<!--toc:end-->
+  - [Possible Quiz Question Topics](#possible-quiz-question-topics)
+  <!--toc:end-->
 
 1. An architecture can either inhibit or enable a system’s driving quality attributes.
 2. The decisions made in an architecture allow you to reason about and manage
