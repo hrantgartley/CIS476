@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 // first
+
 <body>
     <?php
     for ($i = 1; $i < 101; $i++) {
@@ -23,5 +24,3 @@
 </body>
 
 </html>
-}
-l>
