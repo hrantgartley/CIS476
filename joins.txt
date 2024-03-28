@@ -1,0 +1,100 @@
+mysql> SELECT user.name, course.name 
+    -> FROM user
+    -> INNER JOIN
+    -> course on user.course = course.id;
++---------------+------+
+| name          | name |
++---------------+------+
+| Grant Hartley | C++  |
+| John Carmack  | C++  |
++---------------+------+
+2 rows in set (0.00 sec)
+
+ 
+
+mysql> SELECT user.name, course.name
+    -> FROM user
+    -> LEFT JOIN course on user.course = course.id;
++---------------+------+
+| name          | name |
++---------------+------+
+| Grant Hartley | C++  |
+| John Carmack  | C++  |
++---------------+------+
+2 rows in set (0.00 sec)
+
+ 
+
+mysql> SELECT user.name, course.name 
+    -> FROM user
+    -> RIGHT JOIN course on user.course = course.id;
++---------------+------------+
+| name          | name       |
++---------------+------------+
+| NULL          | HTML5      |
+| NULL          | CSS3       |
+| NULL          | Javascript |
+| NULL          | PHP        |
+| NULL          | MySQL      |
+| John Carmack  | C++        |
+| Grant Hartley | C++        |
++---------------+------------+
+7 rows in set (0.00 sec)
+
+ 
+
+mysql> SELECT user.name, course.name
+    -> FROM course 
+    -> LEFT JOIN user on user.course = course.id;
++---------------+------------+
+| name          | name       |
++---------------+------------+
+| NULL          | HTML5      |
+| NULL          | CSS3       |
+| NULL          | Javascript |
+| NULL          | PHP        |
+| NULL          | MySQL      |
+| John Carmack  | C++        |
+| Grant Hartley | C++        |
++---------------+------------+
+7 rows in set (0.00 sec)
+
+ 
+
+mysql> SELECT course.name, COUNT(user.name)
+    -> FROM course
+    -> LEFT JOIN user ON user.course = course.id
+    -> GROUP BY course.id;
++------------+------------------+
+| name       | COUNT(user.name) |
++------------+------------------+
+| HTML5      |                0 |
+| CSS3       |                0 |
+| Javascript |                0 |
+| PHP        |                0 |
+| MySQL      |                0 |
+| C++        |                2 |
++------------+------------------+
+6 rows in set (0.00 sec)
+
+ 
+
+mysql> SELECT user.name, course.name
+    -> FROM user
+    -> LEFT JOIN `course` on user.course = course.id
+    -> UNION
+    -> SELECT user.name, course.name
+    -> FROM user
+    -> RIGHT JOIN course on user.course = course.id;
++---------------+------------+
+| name          | name       |
++---------------+------------+
+| Grant Hartley | C++        |
+| John Carmack  | C++        |
+| NULL          | HTML5      |
+| NULL          | CSS3       |
+| NULL          | Javascript |
+| NULL          | PHP        |
+| NULL          | MySQL      |
++---------------+------------+
+7 rows in set (0.00 sec)
