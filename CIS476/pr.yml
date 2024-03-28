@@ -1,0 +1,17 @@
+name: PR merge
+on: 
+    pull_request: 
+        types: [closed]
+jobs:
+    pr_merge:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Merge PR
+              run: |
+                git config --global user.email "ghartley@una.edu"
+                git config --global user.name "Grant Hartley"
+                git checkout master
+                git pull origin main
+                

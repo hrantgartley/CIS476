@@ -1,0 +1,36 @@
+name: CIS476 demo
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # brings code from the repo to the container
+      - name: Set up Python 3.8 # sets up the python version
+        uses: actions/setup-python@v2 # adds the specified version of python to the container
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          python -m pytest
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - name: Run mypy
+        run: |
+          pip install mypy
+          mypy .
+      - name: Run pylint
+        run: |
+          pip install pylint
+          pylint app.py
